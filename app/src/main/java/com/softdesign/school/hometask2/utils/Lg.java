@@ -16,14 +16,26 @@ import java.util.List;
 public class Lg {
 
     private static final String PREFIX = "HTC ";
+    /**
+     * Constant for split message for logging into blocks
+     */
     public static final int LOGCAT_BUFFER_SIZE = 3000;
 
+    /**
+     * Set status of logging: should log or no
+     * @return status of logging
+     */
     private static boolean shouldLog() {
 //        return BuildConfig.IS_LOGCAT_LOGGER_ENABLED;
 //        return true;
         return false;
     }
 
+    /**
+     * Split text into blocks by {@value #LOGCAT_BUFFER_SIZE} symbols
+     * @param text logging message
+     * @return list of splitted strings
+     */
     private static List<String> getSplittedText (String text){
         List <String> list = new ArrayList<String>();
         if (text.length() > LOGCAT_BUFFER_SIZE){
@@ -40,34 +52,60 @@ public class Lg {
         return list;
     }
 
+    /**
+     * Send an INFO log message.
+     * @param tag Used to identify the source of a log message.  It usually identifies
+     *        the class or activity where the log call occurs.
+     * @param text The message you would like logged.
+     */
     public static void i (String tag, String text){
         if (shouldLog()) {
             List <String> splittedText = getSplittedText(text);
             for(String s: splittedText) Log.i(PREFIX + tag, s);
         }
     }
-
+    /**
+     * Send an ERROR log message.
+     * @param tag Used to identify the source of a log message.  It usually identifies
+     *        the class or activity where the log call occurs.
+     * @param text The message you would like logged.
+     */
     public static void e (String tag, String text) {
         if (shouldLog()) {
             List <String> splittedText = getSplittedText(text);
             for(String s: splittedText) Log.e(PREFIX + tag, s);
         }
     }
-
+    /**
+     * Send a WARN log message.
+     * @param tag Used to identify the source of a log message.  It usually identifies
+     *        the class or activity where the log call occurs.
+     * @param text The message you would like logged.
+     */
     public static void w (String tag, String text) {
         if (shouldLog()) {
             List <String> splittedText = getSplittedText(text);
             for(String s: splittedText) Log.w(PREFIX + tag, s);
         }
     }
-
+    /**
+     * Send a VERBOSE log message.
+     * @param tag Used to identify the source of a log message.  It usually identifies
+     *        the class or activity where the log call occurs.
+     * @param text The message you would like logged.
+     */
     public static void v (String tag, String text) {
         if (shouldLog()) {
             List <String> splittedText = getSplittedText(text);
             for(String s: splittedText) Log.v(PREFIX + tag, s);
         }
     }
-
+    /**
+     * Send a DEBUG log message.
+     * @param tag Used to identify the source of a log message.  It usually identifies
+     *        the class or activity where the log call occurs.
+     * @param text The message you would like logged.
+     */
     public static void d (String tag, String text) {
         if (shouldLog()) {
             List <String> splittedText = getSplittedText(text);
